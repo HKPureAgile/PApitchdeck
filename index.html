@@ -92,24 +92,24 @@ body { font-family:'Inter',sans-serif; color:#f5f5f7; }
 .reveal { opacity:0; transform:translateY(18px); }
 .sl { font-size:.7rem; letter-spacing:.28em; text-transform:uppercase; color:#a1a1aa; margin-bottom:.85rem; }
 
-/* REPOSITIONED NAV CONTROLS (BOTTOM RIGHT) */
+/* ADJUSTED NAV CONTROLS: MOVED CLOSER TO EDGE AND MORE TRANSPARENT */
 .nav-controls { 
   position: fixed; 
-  bottom: 30px; 
-  right: 30px; 
+  bottom: 12px; 
+  right: 12px; 
   display: flex; 
   align-items: center; 
   gap: 12px; 
   z-index: 100; 
-  background: rgba(13, 13, 17, 0.7); 
+  background: rgba(13, 13, 17, 0.15); 
   backdrop-filter: blur(12px); 
   padding: 8px 14px; 
-  border-radius: 16px; 
-  border: 1px solid rgba(255,255,255,0.1); 
-  box-shadow: 0 10px 40px rgba(0,0,0,0.4); 
+  border-radius: 12px; 
+  border: 1px solid rgba(255,255,255,0.08); 
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3); 
 }
-.nav-btn { width:34px; height:34px; border:none; background:rgba(255,255,255,.06); color:#f5f5f7; border-radius:10px; font-size:1.1rem; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:.2s; }
-.nav-btn:hover { background:rgba(167,139,250, 0.25); color: #fff; }
+.nav-btn { width:34px; height:34px; border:none; background:rgba(255,255,255,.04); color:#f5f5f7; border-radius:8px; font-size:1.1rem; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:.2s; }
+.nav-btn:hover { background:rgba(167,139,250, 0.2); color: #fff; }
 .slide-counter { font-size:.8rem; color:#a1a1aa; min-width:45px; text-align:center; font-family: 'Manrope', sans-serif; font-weight: 600; letter-spacing: 0.05em; }
 
 /* Tables */
@@ -449,7 +449,7 @@ body { font-family:'Inter',sans-serif; color:#f5f5f7; }
         <div class="funnel-step"><span class="funnel-num">5</span> Expansion → Enterprise</div>
       </div>
     </div>
-    <p class="text-[#a1a1aa] text-xs italic mt-4 reveal text-center">Our product evolves through continuous deep-interview cycles with Senior PMs, Engineering Leads, and Scrum Masters facing these challenges daily — inside and outside our former companies.</p>
+    <p class="text-[#d4d4d8] text-[.95rem] mt-3 reveal text-center">Our product evolves through continuous deep-interview cycles with Product Managers, Developers, and Scrum Masters facing these challenges daily.</p>
   </div>
 </div>
 
