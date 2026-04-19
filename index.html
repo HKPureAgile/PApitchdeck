@@ -28,11 +28,11 @@ body { font-family:'Inter',sans-serif; color:#f5f5f7; }
 .slide.active { opacity:1; transform:scale(1); pointer-events:all; }
 .slide>.content { position:relative; z-index:2; width:100%; max-width:1180px; padding:clamp(1.2rem,3.5vw,3.5rem); }
 
-/* RESPONSIVE FIXES */
+/* RESPONSIVE CSS */
 @media (max-width: 1024px) {
   .slide { 
     justify-content: flex-start; 
-    overflow-y: auto; /* Natural scrolling enabled */
+    overflow-y: auto; 
     -webkit-overflow-scrolling: touch;
   }
   .slide > .content { 
@@ -61,10 +61,6 @@ body { font-family:'Inter',sans-serif; color:#f5f5f7; }
 @media (max-width: 640px) {
   .grid-cols-4.gap-4 {
     grid-template-columns: 1fr !important;
-  }
-  .nav-controls {
-    width: 90%;
-    bottom: 20px;
   }
   .logo-hero {
     max-height: 80px;
@@ -96,20 +92,35 @@ body { font-family:'Inter',sans-serif; color:#f5f5f7; }
 .reveal { opacity:0; transform:translateY(18px); }
 .sl { font-size:.7rem; letter-spacing:.28em; text-transform:uppercase; color:#a1a1aa; margin-bottom:.85rem; }
 
-/* Nav */
-.nav-controls { position:fixed; bottom:20px; left:50%; transform:translateX(-50%); display:flex; align-items:center; gap:12px; z-index:100; background:rgba(13, 13, 17, 0.8); backdrop-filter:blur(12px); padding:10px 20px; border-radius:999px; border:1px solid rgba(255,255,255,.12); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-.nav-btn { width:36px; height:36px; border:none; background:rgba(255,255,255,.08); color:#f5f5f7; border-radius:50%; font-size:1.1rem; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:.2s; }
-.nav-btn:hover { background:rgba(167,139,250, 0.3); }
-.slide-dots { display:flex; gap:6px; flex-wrap:wrap; max-width:160px; justify-content:center; }
-.dot { width:6px; height:6px; border-radius:50%; background:rgba(255,255,255,.2); cursor:pointer; transition:.3s; flex-shrink:0; }
-.dot.active { background:#a78bfa; transform:scale(1.4); }
-.slide-counter { font-size:.75rem; color:#a1a1aa; min-width:45px; text-align:center; font-weight: 500; }
+/* REPOSITIONED NAV CONTROLS (BOTTOM RIGHT) */
+.nav-controls { 
+  position: fixed; 
+  bottom: 30px; 
+  right: 30px; 
+  display: flex; 
+  align-items: center; 
+  gap: 12px; 
+  z-index: 100; 
+  background: rgba(13, 13, 17, 0.7); 
+  backdrop-filter: blur(12px); 
+  padding: 8px 14px; 
+  border-radius: 16px; 
+  border: 1px solid rgba(255,255,255,0.1); 
+  box-shadow: 0 10px 40px rgba(0,0,0,0.4); 
+}
+.nav-btn { width:34px; height:34px; border:none; background:rgba(255,255,255,.06); color:#f5f5f7; border-radius:10px; font-size:1.1rem; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:.2s; }
+.nav-btn:hover { background:rgba(167,139,250, 0.25); color: #fff; }
+.slide-counter { font-size:.8rem; color:#a1a1aa; min-width:45px; text-align:center; font-family: 'Manrope', sans-serif; font-weight: 600; letter-spacing: 0.05em; }
 
 /* Tables */
 .fin-table-container, .price-table-container { overflow-x: auto; -webkit-overflow-scrolling: touch; width: 100%; margin-top: 10px; }
 .fin-table, .price-table { width:100%; border-collapse:collapse; min-width: 450px; }
-.fin-table th, .price-table th { font-size:.68rem; text-transform:uppercase; letter-spacing:.1em; color:#a1a1aa; padding:.5rem .65rem; border-bottom:1px solid rgba(255,255,255,.08); text-align:left; }
+.fin-table th, .price-table th { font-size:.68rem; text-transform:uppercase; letter-spacing:.1em; color:#a1a1aa; padding:.5rem .65rem; border-bottom:1px solid rgba(255,255,255,.08); text-align:left; white-space:nowrap; }
 .fin-table td, .price-table td { padding:.55rem .65rem; font-size:.85rem; color:#d4d4d8; border-bottom:1px solid rgba(255,255,255,.04); white-space:nowrap; }
+.fin-table .purple { color:#a78bfa; font-weight:600; }
+.fin-table .green { color:#4ade80; font-weight:600; }
+.fin-table .gray { color:#a1a1aa; }
+.price-table .accent { color:#a78bfa; font-weight:600; }
 
 .adv-card { background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); border-radius:14px; padding:.7rem .85rem; }
 .flow-box { background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); border-radius:14px; padding:.7rem .9rem; text-align:center; flex:1; }
@@ -125,6 +136,7 @@ body { font-family:'Inter',sans-serif; color:#f5f5f7; }
   <div class="gradient-mesh">
     <div class="blob" style="width:520px;height:520px;top:-120px;right:-120px;background:#ffffff;opacity:.08"></div>
     <div class="blob" style="width:300px;height:300px;bottom:-60px;left:-40px;background:#a78bfa;opacity:.14"></div>
+    <div class="blob" style="width:240px;height:240px;top:38%;left:18%;background:#6d28d9;opacity:.12"></div>
   </div>
   <canvas class="particle-canvas"></canvas>
   <div class="content text-center">
@@ -148,17 +160,17 @@ body { font-family:'Inter',sans-serif; color:#f5f5f7; }
       <div class="glass-card p-7 reveal">
         <div class="text-4xl font-['Manrope'] font-extrabold text-[#a78bfa] opacity-60 mb-3">01</div>
         <h3 class="text-xl font-semibold mb-3">Large, sticky category</h3>
-        <p class="text-[#d4d4d8] text-[.97rem] leading-relaxed">Project management software is a multi-billion-dollar category, with 2025 global spend estimated at $9.76B and forecasting 15%+ compound growth through 2031.</p>
+        <p class="text-[#d4d4d8] text-[.97rem] leading-relaxed">Project management software is a multi-billion-dollar category, with 2025 global spend estimated at $9.76B and forecasting 15%+ compound growth through 2031. Workflow tools are deeply embedded and slow to switch.</p>
       </div>
       <div class="glass-card p-7 reveal">
         <div class="text-4xl font-['Manrope'] font-extrabold text-[#a78bfa] opacity-60 mb-3">02</div>
         <h3 class="text-xl font-semibold mb-3">Incumbents validate AI demand</h3>
-        <p class="text-[#d4d4d8] text-[.97rem] leading-relaxed">Atlassian, Linear, and Asana are all shipping AI capabilities—proving buyers want work tools to move toward intelligent execution.</p>
+        <p class="text-[#d4d4d8] text-[.97rem] leading-relaxed">Atlassian, Linear, Asana, and monday.com are all shipping AI capabilities — proving buyers want work tools to move from static tracking toward intelligent execution. Atlassian alone reports 2.3M active AI users.</p>
       </div>
       <div class="glass-card p-7 reveal">
         <div class="text-4xl font-['Manrope'] font-extrabold text-[#a78bfa] opacity-60 mb-3">03</div>
         <h3 class="text-xl font-semibold mb-3">Category gap is open</h3>
-        <p class="text-[#d4d4d8] text-[.97rem] leading-relaxed">Existing tools retrofit AI. PureAgile is designed from the ground up for a mixed workforce where humans and AI agents collaborate safely.</p>
+        <p class="text-[#d4d4d8] text-[.97rem] leading-relaxed">Every existing tool was designed for humans, now retrofitting AI as an add-on. PureAgile is designed from the ground up for a mixed workforce — where humans and AI agents contribute, coordinate, and hand off work safely.</p>
       </div>
     </div>
   </div>
@@ -171,38 +183,40 @@ body { font-family:'Inter',sans-serif; color:#f5f5f7; }
     <div class="grid grid-cols-4 gap-4 mb-6">
       <div class="stat-card p-5 text-center reveal">
         <div class="text-3xl font-['Manrope'] font-extrabold text-glow mb-2">$9.76B</div>
-        <div class="text-xs uppercase tracking-[.18em] text-[#a1a1aa]">Global TAM · 2025</div>
+        <div class="text-xs uppercase tracking-[.18em] text-[#a1a1aa] leading-snug">Global PM software TAM · 2025</div>
       </div>
       <div class="stat-card p-5 text-center reveal">
         <div class="text-3xl font-['Manrope'] font-extrabold text-glow mb-2">15.42%</div>
-        <div class="text-xs uppercase tracking-[.18em] text-[#a1a1aa]">CAGR through 2031</div>
+        <div class="text-xs uppercase tracking-[.18em] text-[#a1a1aa] leading-snug">CAGR through 2031</div>
       </div>
       <div class="stat-card p-5 text-center reveal">
         <div class="text-3xl font-['Manrope'] font-extrabold text-glow mb-2">$23.1B</div>
-        <div class="text-xs uppercase tracking-[.18em] text-[#a1a1aa]">Projected size · 2031</div>
+        <div class="text-xs uppercase tracking-[.18em] text-[#a1a1aa] leading-snug">Projected market size · 2031</div>
       </div>
       <div class="stat-card p-5 text-center reveal">
         <div class="text-3xl font-['Manrope'] font-extrabold text-glow mb-2">2.3M</div>
-        <div class="text-xs uppercase tracking-[.18em] text-[#a1a1aa]">AI users at Atlassian</div>
+        <div class="text-xs uppercase tracking-[.18em] text-[#a1a1aa] leading-snug">AI users at Atlassian alone</div>
       </div>
     </div>
     <div class="grid grid-cols-3 gap-5">
       <div class="glass-card p-6 reveal">
         <div class="text-xs uppercase tracking-[.18em] text-[#a1a1aa] mb-2">TAM</div>
-        <div class="text-xl font-['Manrope'] font-bold text-[#a78bfa] mb-2">$9.76B</div>
-        <p class="text-[#d4d4d8] text-sm">Global project management software market.</p>
+        <div class="text-xl font-['Manrope'] font-bold text-[#a78bfa] mb-2">$9.76B (2025)</div>
+        <p class="text-[#d4d4d8] text-sm leading-relaxed">Global project management software market. Growing at 15.42% CAGR to $23.1B by 2031.</p>
+        <p class="text-[#a1a1aa] text-xs mt-3">Source: Mordor Intelligence, Jan 2026</p>
       </div>
       <div class="glass-card p-6 reveal">
         <div class="text-xs uppercase tracking-[.18em] text-[#a1a1aa] mb-2">SAM</div>
         <div class="text-xl font-['Manrope'] font-bold text-[#a78bfa] mb-2">~$2.5B</div>
-        <p class="text-[#d4d4d8] text-sm">AI-adopting software product teams (seed to Series B).</p>
+        <p class="text-[#d4d4d8] text-sm leading-relaxed">AI-adopting software product teams (seed to Series B), actively running AI-assisted dev workflows. ~25% of total market based on cloud-first, tech-native adoption rates.</p>
       </div>
       <div class="glass-card p-6 reveal">
-        <div class="text-xs uppercase tracking-[.18em] text-[#a1a1aa] mb-2">SOM</div>
-        <div class="text-xl font-['Manrope'] font-bold text-[#a78bfa] mb-2">$5.3M</div>
-        <p class="text-[#d4d4d8] text-sm">Realistic capture of 20,000 paying users by 2030.</p>
+        <div class="text-xs uppercase tracking-[.18em] text-[#a1a1aa] mb-2">SOM · PureAgile's Realistic Capture</div>
+        <div class="text-xl font-['Manrope'] font-bold text-[#a78bfa] mb-2">$562K → $5.3M</div>
+        <p class="text-[#d4d4d8] text-sm leading-relaxed">$562K ARR with 3,000 paying users by 2028 (Series A prep). Scaling to $5.3M ARR and 20,000 paying users by 2030.</p>
       </div>
     </div>
+    <p class="text-[#a1a1aa] text-[.92rem] mt-4 reveal italic text-center">Workflow software is large, sticky, and being re-platformed by AI — leaving room for a new category winner that owns trust, orchestration, and execution quality in AI-assisted software delivery.</p>
   </div>
 </div>
 
@@ -214,17 +228,18 @@ body { font-family:'Inter',sans-serif; color:#f5f5f7; }
       <div class="glass-card p-7 reveal">
         <h3 class="text-lg font-semibold mb-4 text-[#a78bfa]">Human workflow pain</h3>
         <ul class="space-y-3 text-[#d4d4d8] text-[.97rem] leading-relaxed">
-          <li><strong>Jira</strong> is administratively heavy and complex.</li>
-          <li><strong>Linear</strong> is great for devs but lacks enterprise visibility.</li>
-          <li>Teams stitch specs across 5+ disconnected tools, losing context.</li>
+          <li><span class="font-semibold text-[#f5f5f7]">Jira</span> is powerful but administratively heavy and notoriously complex — a high learning curve for humans, let alone AI agents trying to parse its structure.</li>
+          <li><span class="font-semibold text-[#f5f5f7]">Linear</span> is great for developers but doesn't scale well as an enterprise tool. UI becomes overwhelming; leadership visibility is limited.</li>
+          <li>Teams stitch specs, issues, PRs, CI/CD, and stakeholder updates across <span class="font-semibold text-[#f5f5f7]">5+ disconnected tools</span>, losing critical context at every seam.</li>
+          <li>Requirements start in UI/UX prototypes, Slack, calls, and Notion — rarely in implementation-ready work items.</li>
         </ul>
       </div>
       <div class="glass-card p-7 reveal">
         <h3 class="text-lg font-semibold mb-4 text-[#a78bfa]">AI workflow pain</h3>
         <ul class="space-y-3 text-[#d4d4d8] text-[.97rem] leading-relaxed">
-          <li>Existing tools were designed for humans; AI is a retrofit.</li>
-          <li>Context must be rewritten repeatedly for engineers and agents.</li>
-          <li>No default system of record for mixed execution.</li>
+          <li>Existing PM tools were <span class="font-semibold text-[#f5f5f7]">designed for humans</span> and retrofitted with AI — making an already messy, complex system even harder for AI to understand and act within.</li>
+          <li>Context must be rewritten repeatedly for engineers, copilots, reviewers, and automation systems — compounding every sprint.</li>
+          <li>There is <span class="font-semibold text-[#f5f5f7]">no default system of record</span> for mixed human + AI execution, planning, and traceability.</li>
         </ul>
       </div>
     </div>
@@ -235,21 +250,43 @@ body { font-family:'Inter',sans-serif; color:#f5f5f7; }
   <div class="content">
     <p class="sl reveal">Category</p>
     <h2 class="font-['Manrope'] text-[clamp(1.8rem,3.5vw,2.8rem)] font-bold mb-5 reveal">PureAgile is the Trust Layer for human + AI product delivery</h2>
+
     <div class="flex items-stretch gap-3 mb-5 reveal">
-      <div class="flow-box"><div class="text-xs font-semibold text-[#a78bfa] mb-1">Ingestion</div><div class="text-xs text-[#a1a1aa]">PRDs · Slack · Figma</div></div>
-      <div class="flex items-center text-[#a78bfa] text-xl font-light px-1">→</div>
-      <div class="flow-box" style="border-color:rgba(167,139,250,.35);background:rgba(167,139,250,.07)"><div class="text-xs font-semibold text-[#a78bfa] mb-1">MCP Engine</div><div class="text-xs text-[#a1a1aa]">PureAgile Logic Gate</div></div>
-      <div class="flex items-center text-[#a78bfa] text-xl font-light px-1">→</div>
-      <div class="flow-box"><div class="text-xs font-semibold text-[#a78bfa] mb-1">Human Pilot</div><div class="text-xs text-[#a1a1aa]">Review · Approve</div></div>
-      <div class="flex items-center text-[#a78bfa] text-xl font-light px-1">→</div>
-      <div class="flow-box"><div class="text-xs font-semibold text-[#a78bfa] mb-1">Trusted Execution</div><div class="text-xs text-[#a1a1aa]">Verified Output</div></div>
-    </div>
-    <div class="grid grid-cols-2 gap-5 mb-5">
-      <div class="glass-card p-6 reveal"><div class="quote-mark">"</div><p class="text-[1.15rem] text-[#d4d4d8] italic">PureAgile is the secure cockpit where humans drive and AI assists.</p></div>
-      <div class="glass-card p-6 reveal">
-        <h3 class="text-base font-semibold mb-3 text-[#a78bfa]">Human-in-the-Loop (HITL)</h3>
-        <p class="text-[#d4d4d8] text-sm mb-3">AI prepares and proposes. Humans decide, approve, and direct. Always.</p>
+      <div class="flow-box">
+        <div class="text-xs font-semibold text-[#a78bfa] mb-1">Ingestion</div>
+        <div class="text-xs text-[#a1a1aa]">PRDs · Slack · Figma · Transcripts</div>
       </div>
+      <div class="flex items-center text-[#a78bfa] text-xl font-light px-1">→</div>
+      <div class="flow-box" style="border-color:rgba(167,139,250,.35);background:rgba(167,139,250,.07)">
+        <div class="text-xs font-semibold text-[#a78bfa] mb-1">MCP Engine</div>
+        <div class="text-xs text-[#a1a1aa]">PureAgile Logic Gate</div>
+      </div>
+      <div class="flex items-center text-[#a78bfa] text-xl font-light px-1">→</div>
+      <div class="flow-box">
+        <div class="text-xs font-semibold text-[#a78bfa] mb-1">Human Pilot</div>
+        <div class="text-xs text-[#a1a1aa]">Review · Approve · Direct</div>
+      </div>
+      <div class="flex items-center text-[#a78bfa] text-xl font-light px-1">→</div>
+      <div class="flow-box">
+        <div class="text-xs font-semibold text-[#a78bfa] mb-1">Trusted Execution</div>
+        <div class="text-xs text-[#a1a1aa]">Verified AI + Human Output</div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-2 gap-5 mb-5">
+      <div class="glass-card p-6 reveal">
+        <div class="quote-mark">"</div>
+        <p class="text-[1.15rem] leading-relaxed text-[#d4d4d8] italic">PureAgile is the secure cockpit where humans drive and AI assists — ensuring the plan and the code never drift apart.</p>
+      </div>
+      <div class="glass-card p-6 reveal">
+        <h3 class="text-base font-semibold mb-3 text-[#a78bfa]">Human-in-the-Loop (HITL) — always</h3>
+        <p class="text-[#d4d4d8] text-sm leading-relaxed mb-3">AI is never making the planning or execution decision autonomously. Humans use AI as agents to handle the administrative and execution work — while <span class="font-semibold text-[#f5f5f7]">control always remains with the human.</span></p>
+        <p class="text-[#d4d4d8] text-sm leading-relaxed">AI prepares. AI proposes. AI executes within approved scope. <span class="font-semibold text-[#f5f5f7]">Humans decide, approve, and direct. Always.</span></p>
+      </div>
+    </div>
+
+    <div class="glass-card accent p-4 reveal">
+      <p class="text-sm text-[#d4d4d8] leading-relaxed"><span class="font-semibold text-[#a78bfa]">MCP (Model Context Protocol)</span> is an open standard that lets PureAgile connect securely to any AI agent — Claude, GPT, Cursor, or your own — without vendor lock-in. <span class="font-semibold text-[#f5f5f7]">Bring Your Own Agent (BYOA)</span> via the PureAgile MCP Server.</p>
     </div>
   </div>
 </div>
@@ -257,17 +294,38 @@ body { font-family:'Inter',sans-serif; color:#f5f5f7; }
 <div class="slide" data-slide="6">
   <div class="content">
     <div class="flex items-center justify-between mb-5 reveal flex-wrap gap-4">
-      <div><p class="sl">Product</p><h2 class="font-['Manrope'] text-[clamp(1.9rem,3.5vw,2.8rem)] font-bold">From prototype to trusted delivery</h2></div>
-      <div class="glass-card accent p-3 text-right">
-        <div class="text-xs font-semibold text-[#a78bfa]">Status: Alpha Live</div>
-        <div class="text-xs text-[#d4d4d8]">Beta: June 1, 2026</div>
+      <div>
+        <p class="sl" style="margin-bottom:.3rem">Product</p>
+        <h2 class="font-['Manrope'] text-[clamp(1.9rem,3.5vw,2.8rem)] font-bold">From prototype to trusted delivery</h2>
+      </div>
+      <div class="glass-card accent p-3 text-right flex-shrink-0">
+        <div class="text-xs font-semibold text-[#a78bfa] mb-1">Current Status</div>
+        <div class="text-xs text-[#d4d4d8]">Alpha live now</div>
+        <div class="text-xs text-[#d4d4d8]">Beta: <span class="font-semibold text-[#f5f5f7]">June 1, 2026</span></div>
+        <div class="text-xs text-[#a1a1aa] mt-1">GitHub · Slack · MCP Server</div>
       </div>
     </div>
     <div class="grid grid-cols-2 gap-5">
-      <div class="glass-card p-6 reveal"><h3 class="font-semibold text-[#a78bfa] mb-2">01 Intent Ingestion</h3><p class="text-sm text-[#d4d4d8]">Convert Slack, Figma, and PRDs into structured tasks.</p></div>
-      <div class="glass-card p-6 reveal"><h3 class="font-semibold text-[#a78bfa] mb-2">02 Autonomous Planning</h3><p class="text-sm text-[#d4d4d8]">AI breaks work into scoped tasks and routes to the best contributor.</p></div>
-      <div class="glass-card p-6 reveal"><h3 class="font-semibold text-[#a78bfa] mb-2">03 Trust & Control</h3><p class="text-sm text-[#d4d4d8]">Approval gates and escalation rules. Every decision is logged.</p></div>
-      <div class="glass-card p-6 reveal"><h3 class="font-semibold text-[#a78bfa] mb-2">04 Delivery Visibility</h3><p class="text-sm text-[#d4d4d8]">Trace requirements from spec to PR and release outcome.</p></div>
+      <div class="glass-card p-6 reveal">
+        <div class="text-2xl font-['Manrope'] font-extrabold text-[#a78bfa] opacity-60 mb-2">01</div>
+        <h3 class="text-lg font-semibold mb-2">Intent Ingestion</h3>
+        <p class="text-[#d4d4d8] text-[.95rem] leading-relaxed">Convert UI/UX prototypes, Slack threads, meeting transcripts, Figma docs, and PRDs into structured, implementation-ready work items via deep integration with the PureAgile MCP Server.</p>
+      </div>
+      <div class="glass-card p-6 reveal">
+        <div class="text-2xl font-['Manrope'] font-extrabold text-[#a78bfa] opacity-60 mb-2">02</div>
+        <h3 class="text-lg font-semibold mb-2">Autonomous Planning</h3>
+        <p class="text-[#d4d4d8] text-[.95rem] leading-relaxed">AI breaks work into scoped tasks, estimates effort, and routes each item to the best human or AI contributor — all prepared for human review before any execution begins.</p>
+      </div>
+      <div class="glass-card p-6 reveal">
+        <div class="text-2xl font-['Manrope'] font-extrabold text-[#a78bfa] opacity-60 mb-2">03</div>
+        <h3 class="text-lg font-semibold mb-2">Trust &amp; Control (HITL)</h3>
+        <p class="text-[#d4d4d8] text-[.95rem] leading-relaxed">Confidence thresholds, approval gates, and escalation rules. AI contributes when it should — and hands off to humans when it must. Every decision is logged, traceable, and reversible.</p>
+      </div>
+      <div class="glass-card p-6 reveal">
+        <div class="text-2xl font-['Manrope'] font-extrabold text-[#a78bfa] opacity-60 mb-2">04</div>
+        <h3 class="text-lg font-semibold mb-2">Delivery Visibility</h3>
+        <p class="text-[#d4d4d8] text-[.95rem] leading-relaxed">Trace every requirement from specification to PR, review, CI/CD signal, and release outcome — in one execution narrative. Leadership always knows what's shipping and why.</p>
+      </div>
     </div>
   </div>
 </div>
@@ -277,10 +335,30 @@ body { font-family:'Inter',sans-serif; color:#f5f5f7; }
     <p class="sl reveal">Competitive map</p>
     <h2 class="font-['Manrope'] text-[clamp(1.7rem,3.2vw,2.6rem)] font-bold mb-5 reveal">Neither incumbents nor AI coding tools own the mixed delivery layer</h2>
     <div class="grid grid-cols-2 gap-4 mb-4">
-      <div class="glass-card p-5 reveal"><h3 class="text-base font-semibold mb-2">Legacy PM</h3><p class="text-sm text-[#d4d4d8]">Jira is built for humans—administratively heavy and slow.</p></div>
-      <div class="glass-card p-5 reveal"><h3 class="text-base font-semibold mb-2">Modern PM</h3><p class="text-sm text-[#d4d4d8]">Linear/Asana are retrofitting AI on existing models.</p></div>
-      <div class="glass-card p-5 reveal"><h3 class="text-base font-semibold mb-2">AI Coding Tools</h3><p class="text-sm text-[#d4d4d8]">Cursor/Devin are blind to the sprint and the stakeholder.</p></div>
-      <div class="glass-card accent p-5 reveal"><h3 class="text-base font-semibold mb-2 text-[#a78bfa]">PureAgile</h3><p class="text-sm text-[#d4d4d8]">Purpose-built for the intersection of human + AI teams.</p></div>
+      <div class="glass-card p-5 reveal">
+        <div class="text-xs uppercase tracking-[.15em] text-[#a1a1aa] mb-1">Legacy PM</div>
+        <h3 class="text-base font-semibold mb-2">Jira / Atlassian</h3>
+        <p class="text-[#d4d4d8] text-sm leading-relaxed mb-2">Massive enterprise footprint, 2.3M AI users. Adding AI across search and context extraction.</p>
+        <p class="text-[#f5f5f7] text-sm font-medium">Gap: Built for humans — administratively heavy, complex, slow. High learning curve that AI cannot navigate.</p>
+      </div>
+      <div class="glass-card p-5 reveal">
+        <div class="text-xs uppercase tracking-[.15em] text-[#a1a1aa] mb-1">Modern PM</div>
+        <h3 class="text-base font-semibold mb-2">Linear · Asana · monday.com</h3>
+        <p class="text-[#d4d4d8] text-sm leading-relaxed mb-2">Linear is dev-friendly. Asana &amp; monday.com are management-friendly. All retrofitting AI on existing models.</p>
+        <p class="text-[#f5f5f7] text-sm font-medium">Gap: No single tool is <em>team-friendly</em> — bridging developers, PMs, and leadership in one AI-native layer.</p>
+      </div>
+      <div class="glass-card p-5 reveal">
+        <div class="text-xs uppercase tracking-[.15em] text-[#a1a1aa] mb-1">AI Coding Tools</div>
+        <h3 class="text-base font-semibold mb-2">GitHub Copilot · Cursor · Devin</h3>
+        <p class="text-[#d4d4d8] text-sm leading-relaxed mb-2">Powerful at individual code generation. Strong within their own sessions and ecosystems.</p>
+        <p class="text-[#f5f5f7] text-sm font-medium">Gap: No PM layer, no roadmap tracking, no team governance. Great at writing code — blind to the sprint, the stakeholder, and the plan.</p>
+      </div>
+      <div class="glass-card accent p-5 reveal">
+        <div class="text-xs uppercase tracking-[.15em] text-[#a78bfa] mb-1">PureAgile</div>
+        <h3 class="text-base font-semibold mb-2 text-[#a78bfa]">Purpose-built for the intersection</h3>
+        <p class="text-[#d4d4d8] text-sm leading-relaxed mb-2">Designed from day one for mixed human + AI teams. Orchestration, HITL trust controls, and delivery traceability in one system.</p>
+        <p class="text-[#a78bfa] text-sm font-semibold">Advantage: The only tool that is team-friendly — for developers, PMs, and leadership — with AI built in, not bolted on.</p>
+      </div>
     </div>
   </div>
 </div>
@@ -289,10 +367,18 @@ body { font-family:'Inter',sans-serif; color:#f5f5f7; }
   <div class="content">
     <p class="sl reveal">PureAgile: Vision</p>
     <h2 class="font-['Manrope'] text-[clamp(1.9rem,3.5vw,2.8rem)] font-bold mb-4 reveal">Solving the Knowledge Debt Crisis</h2>
-    <div class="glass-card accent p-4 mb-6 reveal"><p class="text-sm text-[#d4d4d8]"><strong>Knowledge Debt</strong> = the compounding gap between human intent and AI execution.</p></div>
+    <div class="glass-card accent p-4 mb-6 reveal">
+      <p class="text-sm text-[#d4d4d8] leading-relaxed"><span class="font-semibold text-[#a78bfa]">Knowledge Debt</span> = the compounding gap between human intent and what AI actually executes. It grows every sprint as context is lost in handoffs between humans, tools, and agents — silently degrading delivery quality and trust.</p>
+    </div>
     <div class="grid grid-cols-2 gap-6">
-      <div class="glass-card p-7 reveal"><h3 class="font-semibold text-[#a78bfa] mb-3">The Immediate Wedge</h3><p class="text-sm text-[#d4d4d8]">A Unified Translator carrying intent from concept to execution.</p></div>
-      <div class="glass-card p-7 reveal"><h3 class="font-semibold text-[#a78bfa] mb-3">The Long-Term Moat</h3><p class="text-sm text-[#d4d4d8]">The tool becomes smarter about how your specific team decides and ships.</p></div>
+      <div class="glass-card p-7 reveal">
+        <h3 class="text-lg font-semibold mb-3 text-[#a78bfa]">The Immediate Wedge</h3>
+        <p class="text-[#d4d4d8] text-[.97rem] leading-relaxed">In hybrid delivery, critical intent is lost in the gap between "what we want to build" and "what AI actually executes." PureAgile is the <span class="font-semibold text-[#f5f5f7]">Unified Translator</span> — capturing, structuring, and carrying human intent from concept through to agent execution without loss or drift.</p>
+      </div>
+      <div class="glass-card p-7 reveal">
+        <h3 class="text-lg font-semibold mb-3 text-[#a78bfa]">The Long-Term Moat</h3>
+        <p class="text-[#d4d4d8] text-[.97rem] leading-relaxed">As teams use PureAgile, delivery patterns emerge. <span class="font-semibold text-[#f5f5f7]">Requirements Drift</span> and <span class="font-semibold text-[#f5f5f7]">SSOT (Single Source of Truth)</span> problems begin solving themselves. The longer a team uses it, the smarter PureAgile becomes about how that specific team plans, decides, and ships.</p>
+      </div>
     </div>
   </div>
 </div>
@@ -302,18 +388,31 @@ body { font-family:'Inter',sans-serif; color:#f5f5f7; }
     <p class="sl reveal">Beachhead</p>
     <h2 class="font-['Manrope'] text-[clamp(1.9rem,3.5vw,2.8rem)] font-bold mb-6 reveal">Built for growing teams shipping with AI</h2>
     <div class="grid grid-cols-2 gap-6 mb-5">
-      <div class="glass-card p-6 reveal"><h3 class="font-semibold mb-3">Who we're building for</h3><p class="text-sm text-[#d4d4d8]">Startups using humans and AI to build software.</p></div>
-      <div class="glass-card p-6 reveal"><h3 class="font-semibold mb-3">Their current stack</h3><p class="text-sm text-[#d4d4d8]">GitHub, Slack, and at least one AI coding tool.</p></div>
-      <div class="glass-card p-6 reveal"><h3 class="font-semibold mb-3">Why they pick PureAgile</h3><p class="text-sm text-[#d4d4d8]">They want to ship faster without losing visibility.</p></div>
-      <div class="glass-card p-6 reveal"><h3 class="font-semibold mb-3">What makes them stay</h3><p class="text-sm text-[#d4d4d8]">PureAgile becomes the team's shared memory.</p></div>
+      <div class="glass-card p-6 reveal">
+        <h3 class="text-lg font-semibold mb-3">Who we're building for</h3>
+        <p class="text-[#d4d4d8] text-[.95rem] leading-relaxed">New and growing startups using a mix of humans and AI to build software — teams where developers, PMs, and leadership all need to stay aligned as AI takes on more of the execution work.</p>
+      </div>
+      <div class="glass-card p-6 reveal">
+        <h3 class="text-lg font-semibold mb-3">Their current stack</h3>
+        <p class="text-[#d4d4d8] text-[.95rem] leading-relaxed">GitHub, Slack, Notion or docs, Figma, lightweight PM tools (Linear/Jira), CI/CD pipelines — and at least one AI coding tool already in daily use. Fragmented with no unified AI execution layer.</p>
+      </div>
+      <div class="glass-card p-6 reveal">
+        <h3 class="text-lg font-semibold mb-3">Why they pick PureAgile</h3>
+        <p class="text-[#d4d4d8] text-[.95rem] leading-relaxed">They want to ship faster with AI — but without losing visibility, introducing heavy process, or handing control away from the people accountable for what gets built.</p>
+      </div>
+      <div class="glass-card p-6 reveal">
+        <h3 class="text-lg font-semibold mb-3">What makes them stay</h3>
+        <p class="text-[#d4d4d8] text-[.95rem] leading-relaxed">PureAgile becomes the team's memory — linking every decision to the requirement that started it. The context and trust graph compounds with every sprint, making switching painful and the tool indispensable.</p>
+      </div>
     </div>
+    <p class="text-[#d4d4d8] text-[.95rem] mt-3 reveal text-center">Phase 2: expand upmarket — enterprise-grade HITL governance, advanced analytics, and extensibility to tools like SAP, Salesforce, and Workday become differentiators at scale.</p>
   </div>
 </div>
 
 <div class="slide" data-slide="10">
   <div class="content">
-    <p class="sl reveal">Business model & GTM</p>
-    <h2 class="font-['Manrope'] text-[clamp(1.9rem,3.5vw,2.8rem)] font-bold mb-6 reveal">PLG first, with pricing that scales</h2>
+    <p class="sl reveal">Business model &amp; go-to-market</p>
+    <h2 class="font-['Manrope'] text-[clamp(1.9rem,3.5vw,2.8rem)] font-bold mb-6 reveal">PLG first, with a pricing ladder that scales cleanly</h2>
     <div class="grid grid-cols-2 gap-6 mb-5">
       <div class="glass-card p-6 reveal">
         <h3 class="text-base font-semibold mb-4">Pricing tiers</h3>
@@ -321,27 +420,36 @@ body { font-family:'Inter',sans-serif; color:#f5f5f7; }
           <table class="price-table">
             <thead><tr><th>Plan</th><th>Price</th><th>Seats</th></tr></thead>
             <tbody>
-              <tr><td>Free</td><td class="text-[#a78bfa]">$0</td><td>≤10</td></tr>
-              <tr><td>Team</td><td class="text-[#a78bfa]">$12</td><td>11–50</td></tr>
-              <tr><td>Business</td><td class="text-[#a78bfa]">$24</td><td>51–200</td></tr>
+              <tr><td>Free</td><td class="accent">$0</td><td>≤10</td></tr>
+              <tr><td>Team</td><td class="accent">$12/seat/mo</td><td>11–50</td></tr>
+              <tr><td>Business</td><td class="accent">$24/seat/mo</td><td>51–200</td></tr>
+              <tr><td>Enterprise</td><td class="accent">$40/seat/mo</td><td>200+</td></tr>
             </tbody>
           </table>
         </div>
       </div>
       <div class="glass-card p-6 reveal">
-        <h3 class="font-semibold mb-3">GTM approach</h3>
-        <p class="text-sm text-[#d4d4d8]">Viral adoption through team invite loops and content targeting AI governance.</p>
+        <h3 class="text-base font-semibold mb-3">GTM approach</h3>
+        <p class="text-[#d4d4d8] text-sm leading-relaxed mb-3">Product-led growth. We are building a tool that engineers, designers, PMs, and executives love — and want their peers to use. Viral adoption through team invite loops and word-of-mouth advocacy.</p>
+        <p class="text-[#d4d4d8] text-sm leading-relaxed mb-3">Sharp content targeting the need for AI governance in scaling teams, and the frustrations with current tools that weren't designed for how software is built today.</p>
+        <p class="text-[#a1a1aa] text-xs">GTM specialist hire planned with additional funding.</p>
       </div>
     </div>
     <div class="glass-card p-5 reveal">
       <h3 class="text-sm font-semibold mb-3 text-[#a78bfa]">PLG funnel</h3>
-      <div class="flex items-center gap-1 overflow-x-auto pb-2">
-        <div class="funnel-step"><span class="funnel-num">1</span> Launch</div><span class="text-[#a78bfa]">→</span>
-        <div class="funnel-step"><span class="funnel-num">2</span> Sign-up</div><span class="text-[#a78bfa]">→</span>
-        <div class="funnel-step"><span class="funnel-num">3</span> Viral Loop</div><span class="text-[#a78bfa]">→</span>
-        <div class="funnel-step"><span class="funnel-num">4</span> Expansion</div>
+      <div class="flex items-center gap-1" style="overflow-x:auto; padding-bottom: 5px;">
+        <div class="funnel-step"><span class="funnel-num">1</span> Launch &amp; community</div>
+        <div class="text-[#a78bfa] text-sm flex-shrink-0">→</div>
+        <div class="funnel-step"><span class="funnel-num">2</span> Free sign-up (≤10 seats)</div>
+        <div class="text-[#a78bfa] text-sm flex-shrink-0">→</div>
+        <div class="funnel-step"><span class="funnel-num">3</span> Viral peer adoption</div>
+        <div class="text-[#a78bfa] text-sm flex-shrink-0">→</div>
+        <div class="funnel-step"><span class="funnel-num">4</span> Conversion (&gt;10 seats)</div>
+        <div class="text-[#a78bfa] text-sm flex-shrink-0">→</div>
+        <div class="funnel-step"><span class="funnel-num">5</span> Expansion → Enterprise</div>
       </div>
     </div>
+    <p class="text-[#a1a1aa] text-xs italic mt-4 reveal text-center">Our product evolves through continuous deep-interview cycles with Senior PMs, Engineering Leads, and Scrum Masters facing these challenges daily — inside and outside our former companies.</p>
   </div>
 </div>
 
@@ -350,9 +458,18 @@ body { font-family:'Inter',sans-serif; color:#f5f5f7; }
     <p class="sl reveal">Moat</p>
     <h2 class="font-['Manrope'] text-[clamp(2rem,4vw,3rem)] font-bold mb-8 reveal">Why teams stay with PureAgile</h2>
     <div class="grid grid-cols-3 gap-6">
-      <div class="glass-card p-7 reveal"><h3 class="text-xl font-semibold mb-3">Trust Graph</h3><p class="text-sm text-[#d4d4d8]">Review patterns become proprietary execution intelligence.</p></div>
-      <div class="glass-card p-7 reveal"><h3 class="text-xl font-semibold mb-3">Context Graph</h3><p class="text-sm text-[#d4d4d8]">A unified history of why decisions were made.</p></div>
-      <div class="glass-card p-7 reveal"><h3 class="text-xl font-semibold mb-3">Workflow Lock-in</h3><p class="text-sm text-[#d4d4d8]">Switching costs grow as your data advantage compounds.</p></div>
+      <div class="glass-card p-7 reveal">
+        <h3 class="text-xl font-semibold mb-3">Trust Graph</h3>
+        <p class="text-[#d4d4d8] text-[.97rem] leading-relaxed">Confidence thresholds, review outcomes, escalation patterns, and approval decisions become proprietary execution intelligence — unique to each team. This institutional knowledge cannot be replicated by switching tools.</p>
+      </div>
+      <div class="glass-card p-7 reveal">
+        <h3 class="text-xl font-semibold mb-3">Context Graph</h3>
+        <p class="text-[#d4d4d8] text-[.97rem] leading-relaxed">A unified, searchable history of <em>why</em> decisions were made — linking the PRD, the Slack thread, the prototype, and the code execution into a single delivery narrative richer than any standalone issue tracker.</p>
+      </div>
+      <div class="glass-card p-7 reveal">
+        <h3 class="text-xl font-semibold mb-3">Workflow Lock-in</h3>
+        <p class="text-[#d4d4d8] text-[.97rem] leading-relaxed">Once teams run planning, AI assignment, HITL review, and delivery traceability through one layer, the switching costs and compounding data advantage make PureAgile the team's core execution intelligence.</p>
+      </div>
     </div>
   </div>
 </div>
@@ -360,19 +477,52 @@ body { font-family:'Inter',sans-serif; color:#f5f5f7; }
 <div class="slide" data-slide="12">
   <div class="content">
     <p class="sl reveal">Team</p>
-    <h2 class="font-['Manrope'] text-[clamp(1.8rem,3.5vw,2.6rem)] font-bold mb-5 reveal">Built by operators who've lived the problem</h2>
+    <h2 class="font-['Manrope'] text-[clamp(1.8rem,3.5vw,2.6rem)] font-bold mb-5 reveal">Built by operators who've lived the problem for 6+ years</h2>
     <div class="grid grid-cols-2 gap-5 mb-5">
-      <div class="glass-card p-6 reveal"><h3 class="text-xl font-semibold">Apoorva Surana</h3><p class="text-[#a1a1aa] text-sm">CEO / CTO · Pure Storage / Gartner</p></div>
-      <div class="glass-card p-6 reveal"><h3 class="text-xl font-semibold">Rishie Bothra</h3><p class="text-[#a1a1aa] text-sm">CPO / COO · Databank / Ellucian</p></div>
+      <div class="glass-card p-6 reveal">
+        <h3 class="text-xl font-semibold mb-1">Apoorva Surana</h3>
+        <p class="text-[#a1a1aa] text-sm mb-3">Co-founder · CEO / CTO</p>
+        <p class="text-[#d4d4d8] text-sm leading-relaxed mb-3">Ensuring PureAgile's scalable and secure architecture. 6+ years in Web Security and InfoSec, working across startups and enterprises of all sizes.</p>
+        <ul class="text-[#d4d4d8] text-sm space-y-1">
+          <li>Security Engineer, Pure Storage</li>
+          <li>IAM Engineer, Gartner</li>
+          <li>M.S. Computer Science, NYU · B.Tech CS, PICT Pune</li>
+        </ul>
+      </div>
+      <div class="glass-card p-6 reveal">
+        <h3 class="text-xl font-semibold mb-1">Rishie Bothra</h3>
+        <p class="text-[#a1a1aa] text-sm mb-3">Co-founder · CPO / COO</p>
+        <p class="text-[#d4d4d8] text-sm leading-relaxed mb-3">Fueling PureAgile's product vision and delivery strategy. 6+ years in Product Management and BI, across complex delivery cycles for high-growth teams.</p>
+        <ul class="text-[#d4d4d8] text-sm space-y-1">
+          <li>Sr. Product Manager, Databank</li>
+          <li>BI Consultant, Ellucian</li>
+          <li>M.S. Information Management, Syracuse · B.Tech, VIT Vellore</li>
+        </ul>
+      </div>
     </div>
-    <div class="reveal">
+    <div class="mb-3 reveal">
       <p class="text-xs uppercase tracking-[.2em] text-[#a1a1aa] mb-3">Advisory Board</p>
       <div class="grid grid-cols-5 gap-3">
-        <div class="adv-card"><div class="text-xs font-semibold">Nitin Jain</div><div class="text-[10px] text-[#a1a1aa]">Salesforce</div></div>
-        <div class="adv-card"><div class="text-xs font-semibold">Raghu Korrapati</div><div class="text-[10px] text-[#a1a1aa]">Author</div></div>
-        <div class="adv-card"><div class="text-xs font-semibold">Venkatesh Gupta</div><div class="text-[10px] text-[#a1a1aa]">Cello Group</div></div>
-        <div class="adv-card"><div class="text-xs font-semibold">Amit Borele</div><div class="text-[10px] text-[#a1a1aa]">EPCPROMAN</div></div>
-        <div class="adv-card"><div class="text-xs font-semibold">Dr. LS Bothra</div><div class="text-[10px] text-[#a1a1aa]">ARMIET</div></div>
+        <div class="adv-card reveal">
+          <div class="text-sm font-semibold text-[#f5f5f7] mb-1">Nitin Jain</div>
+          <div class="text-xs text-[#a1a1aa] leading-snug">Sr. Director, Salesforce · San Francisco</div>
+        </div>
+        <div class="adv-card reveal">
+          <div class="text-sm font-semibold text-[#f5f5f7] mb-1">Raghu Korrapati</div>
+          <div class="text-xs text-[#a1a1aa] leading-snug">Ex-Commissioner, Higher Education, SC · Author, 15+ books</div>
+        </div>
+        <div class="adv-card reveal">
+          <div class="text-sm font-semibold text-[#f5f5f7] mb-1">Venkatesh Gupta</div>
+          <div class="text-xs text-[#a1a1aa] leading-snug">Ex-Chairman, Cello Group</div>
+        </div>
+        <div class="adv-card reveal">
+          <div class="text-sm font-semibold text-[#f5f5f7] mb-1">Amit Borele</div>
+          <div class="text-xs text-[#a1a1aa] leading-snug">Founder &amp; MD, EPCPROMAN Pvt Ltd</div>
+        </div>
+        <div class="adv-card reveal">
+          <div class="text-sm font-semibold text-[#f5f5f7] mb-1">Dr. LS Bothra</div>
+          <div class="text-xs text-[#a1a1aa] leading-snug">Chairman, ARMIET College</div>
+        </div>
       </div>
     </div>
   </div>
@@ -386,24 +536,58 @@ body { font-family:'Inter',sans-serif; color:#f5f5f7; }
       <div class="glass-card p-6 reveal">
         <h3 class="text-base font-semibold text-[#a78bfa] mb-4">Round structure</h3>
         <div class="space-y-2 text-sm">
-          <div class="flex justify-between"><span>Raising</span><strong>$1.2M</strong></div>
-          <div class="flex justify-between"><span>Instrument</span><strong>Post-money SAFE</strong></div>
-          <div class="flex justify-between"><span>Valuation Cap</span><strong class="text-[#a78bfa]">$5M</strong></div>
+          <div class="flex justify-between"><span class="text-[#a1a1aa]">Raising</span><span class="font-semibold text-[#f5f5f7]">$1.2M</span></div>
+          <div class="flex justify-between"><span class="text-[#a1a1aa]">Instrument</span><span class="font-semibold text-[#f5f5f7]">Post-money SAFE</span></div>
+          <div class="flex justify-between"><span class="text-[#a1a1aa]">Valuation cap</span><span class="font-semibold text-[#a78bfa]">$5M</span></div>
+          <div class="flex justify-between"><span class="text-[#a1a1aa]">Pro-rata rights</span><span class="font-semibold text-[#f5f5f7]">Yes (≥$100K)</span></div>
+        </div>
+        <div class="border-t border-[rgba(255,255,255,.08)] mt-4 pt-4">
+          <h3 class="text-base font-semibold text-[#a78bfa] mb-3">Use of funds · 24 months</h3>
+          <div class="space-y-2 text-sm">
+            <div class="flex justify-between"><span class="text-[#d4d4d8]">Engineering &amp; Product (2 hires)</span><span class="font-semibold text-[#f5f5f7]">50% · $600K</span></div>
+            <div class="flex justify-between"><span class="text-[#d4d4d8]">LLM Infrastructure &amp; Integrations</span><span class="font-semibold text-[#f5f5f7]">33% · $400K</span></div>
+            <div class="flex justify-between"><span class="text-[#d4d4d8]">Operations &amp; GTM groundwork</span><span class="font-semibold text-[#f5f5f7]">17% · $200K</span></div>
+          </div>
         </div>
       </div>
       <div class="glass-card p-6 reveal">
-        <h3 class="text-base font-semibold text-[#a78bfa] mb-4">5-year plan</h3>
+        <h3 class="text-base font-semibold text-[#a78bfa] mb-4">5-year financial plan</h3>
         <div class="fin-table-container">
           <table class="fin-table">
-            <thead><tr><th>Year</th><th>MAU</th><th>ARR</th></tr></thead>
+            <thead>
+              <tr>
+                <th>Year</th>
+                <th>Stage</th>
+                <th>MAU</th>
+                <th>ARR</th>
+                <th>P&amp;L</th>
+              </tr>
+            </thead>
             <tbody>
-              <tr><td>2026</td><td>5K</td><td>—</td></tr>
-              <tr><td>2028</td><td>100K</td><td class="text-[#a78bfa]">$562K</td></tr>
-              <tr><td>2030</td><td>500K</td><td class="text-[#a78bfa]">$5.33M</td></tr>
+              <tr>
+                <td>2026</td><td class="gray">Seed</td><td>5K</td><td class="gray">—</td><td class="gray">-$300K</td>
+              </tr>
+              <tr>
+                <td>2027</td><td class="gray">Seed</td><td>25K</td><td class="purple">$90K</td><td class="gray">-$240K</td>
+              </tr>
+              <tr>
+                <td>2028</td><td class="gray">Series A prep</td><td>100K</td><td class="purple">$562K</td><td class="green">+$48K</td>
+              </tr>
+              <tr>
+                <td>2029</td><td class="gray">Series A</td><td>250K</td><td class="purple">$2.02M</td><td class="green">+$1.09M</td>
+              </tr>
+              <tr>
+                <td>2030</td><td class="gray">Series B prep</td><td>500K</td><td class="purple">$5.33M</td><td class="green">+$3.88M</td>
+              </tr>
             </tbody>
           </table>
         </div>
+        <p class="text-[#a1a1aa] text-xs mt-3">Pricing: Team $12 · Business $24 · Enterprise $40 /seat/mo · BYOA (Bring Your Own Agent) via MCP Server<br/>2.5–4% free-to-paid conversion across plan horizon</p>
       </div>
+    </div>
+    <div class="grid grid-cols-2 gap-4">
+      <div class="glass-card p-4 border-l-4 border-[#a78bfa] border-t-0 border-r-0 border-b-0 reveal" style="border-radius:0 14px 14px 0"><p class="text-sm text-[#d4d4d8] leading-relaxed">We will win with product-led growth, clear pricing tiers, startup-friendly adoption, and enterprise-grade governance as teams scale.</p></div>
+      <div class="glass-card p-4 border-l-4 border-[#6d28d9] border-t-0 border-r-0 border-b-0 reveal" style="border-radius:0 14px 14px 0"><p class="text-sm text-[#d4d4d8] leading-relaxed">The next generation of product teams includes both people and software agents — and they need a new system of execution, not just a better issue tracker.</p></div>
     </div>
   </div>
 </div>
@@ -413,32 +597,26 @@ body { font-family:'Inter',sans-serif; color:#f5f5f7; }
   <div class="content text-center">
     <img class="logo-hero reveal" src="PA Logo.png" alt="PureAgile logo"/>
     <h2 class="font-['Manrope'] text-[clamp(2.6rem,5vw,4.6rem)] font-extrabold tracking-tight reveal">Build with confidence.</h2>
-    <p class="text-lg text-[#d4d4d8] mt-4 reveal">www.pureagile.com</p>
+    <p class="text-[clamp(1rem,2vw,1.3rem)] text-[#d4d4d8] max-w-2xl mx-auto mt-4 reveal">PureAgile helps human and AI engineers plan, execute, and deliver trusted products together.</p>
+    <div class="flex justify-center gap-6 mt-8 flex-wrap reveal">
+      <a href="https://www.pureagile.com" target="_blank" class="pill-tag" style="text-decoration:none">🌐 www.pureagile.com</a>
+      <a href="mailto:hello@pureagile.com" class="pill-tag" style="text-decoration:none">✉ hello@pureagile.com</a>
+    </div>
+    <p class="text-xs tracking-[.3em] uppercase text-[#a1a1aa] mt-8 reveal">Thank you</p>
   </div>
 </div>
 
-</div>
-
-<div class="nav-controls">
+</div><div class="nav-controls">
   <button class="nav-btn" onclick="changeSlide(-1)" title="Previous Slide">&#8249;</button>
-  <div class="slide-dots" id="dots"></div>
-  <button class="nav-btn" onclick="changeSlide(1)" title="Next Slide">&#8250;</button>
   <span class="slide-counter" id="counter">1 / 14</span>
+  <button class="nav-btn" onclick="changeSlide(1)" title="Next Slide">&#8250;</button>
 </div>
 
 <script>
 let current = 1;
 const slides = document.querySelectorAll('.slide');
 const total = slides.length;
-const dotsContainer = document.getElementById('dots');
 const counter = document.getElementById('counter');
-
-for (let i = 1; i <= total; i++) {
-  const dot = document.createElement('div');
-  dot.className = 'dot' + (i === 1 ? ' active' : '');
-  dot.onclick = () => goToSlide(i);
-  dotsContainer.appendChild(dot);
-}
 
 function goToSlide(n) {
   const prev = document.querySelector('.slide.active');
@@ -446,7 +624,7 @@ function goToSlide(n) {
   if (prev) prev.classList.remove('active');
   if (next) { 
     next.classList.add('active'); 
-    next.scrollTop = 0; // Always start new slide at the top
+    next.scrollTop = 0; 
     animateSlide(next); 
   }
   current = n;
@@ -461,7 +639,6 @@ function changeSlide(dir) {
 }
 
 function updateNav() {
-  document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i + 1 === current));
   counter.textContent = current + ' / ' + total;
 }
 
@@ -478,13 +655,11 @@ function animateSlide(slide) {
   });
 }
 
-// Keep Keyboard support
 document.addEventListener('keydown', (e) => {
   if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); changeSlide(1); }
   if (e.key === 'ArrowLeft') { e.preventDefault(); changeSlide(-1); }
 });
 
-// Particles
 window.initParticles = function (canvas, count = 55) {
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
